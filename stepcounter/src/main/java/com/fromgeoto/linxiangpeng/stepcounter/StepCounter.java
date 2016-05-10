@@ -62,12 +62,11 @@ public class StepCounter {
         PendingIntent pendingIntent = PendingIntent.getService(context.getApplicationContext(),0,intent,0);
 
         Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(System.currentTimeMillis());
         calendar.setTimeZone(TimeZone.getDefault());
-        calendar.add(Calendar.HOUR_OF_DAY, 23);
-        calendar.add(Calendar.MINUTE,59);
-        calendar.add(Calendar.SECOND,59);
-        calendar.add(Calendar.MILLISECOND,0);
+        calendar.set(Calendar.HOUR_OF_DAY, 23);
+        calendar.set(Calendar.MINUTE,59);
+        calendar.set(Calendar.SECOND,30);
+        calendar.set(Calendar.MILLISECOND,0);
 
         AlarmManager manager = (AlarmManager)context.getSystemService(context.ALARM_SERVICE);
         manager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY, pendingIntent);
@@ -80,12 +79,11 @@ public class StepCounter {
         PendingIntent pendingIntent = PendingIntent.getService(context.getApplicationContext(),0,intent,0);
 
         Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(System.currentTimeMillis());
         calendar.setTimeZone(TimeZone.getDefault());
-        calendar.add(Calendar.HOUR_OF_DAY, 23);
-        calendar.add(Calendar.MINUTE,59);
-        calendar.add(Calendar.SECOND,59);
-        calendar.add(Calendar.MILLISECOND,0);
+        calendar.set(Calendar.HOUR_OF_DAY, 23);
+        calendar.set(Calendar.MINUTE,59);
+        calendar.set(Calendar.SECOND,30);
+        calendar.set(Calendar.MILLISECOND,0);
 
         AlarmManager manager = (AlarmManager)context.getSystemService(context.ALARM_SERVICE);
         manager.cancel(pendingIntent);

@@ -3,6 +3,7 @@ package com.fromgeoto.linxiangpeng.stepcounter;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
+import android.widget.Toast;
 
 public class UpdateStepNumberService extends Service {
 
@@ -16,12 +17,17 @@ public class UpdateStepNumberService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        type = intent.getIntExtra(STEP_TYPE, StepCounterManager.UPDATE_STEP_COUNT);
+        if(intent == null){
+            type = StepCounterManager.UPDATE_STEP_NUMBER;
+        }else {
+            type = intent.getIntExtra(STEP_TYPE, StepCounterManager.UPDATE_STEP_COUNT);
+        }
         final StepCounterManager manager = new StepCounterManager(UpdateStepNumberService.this);
         if (StepUtils.stepSensorIsAvailable(UpdateStepNumberService.this) && manager != null){
             StepUtils.obtainSteps(UpdateStepNumberService.this, new UpdateStepListener() {
                 @Override
                 public void updateStep(long time, long step) {
+                    Toast.makeText(UpdateStepNumberService.this, "更新步数类型 : "+step, Toast.LENGTH_SHORT).show();
                     manager.update(type,time,step);
                 }
             });
